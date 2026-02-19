@@ -1,16 +1,20 @@
-
 Shadrack Nandwa
 P.O BOX 00100, Nairobi, • 
 +254728764291 • 
 Nandwashady94@gmail.com • 
-linkedin.com/in/Nandwa Shadrack • 
+linkedin.com/in/Nandwa Shadrack
+
 ICT Support Specialist
+
 OBJECTIVE
 An Information Technology specialist with robust understanding of IT principles and processes. I am proficient in 
 website development and have accumulated 2+ years of practical experience working as ICT support personnel.
-PROFESSIONAL EXPERIENCE
-Ministry of Education – Mumias, Kenya
-ICT Support Personnel, June 2024 – June 2025
+
+**PROFESSIONAL EXPERIENCE**
+
+**Ministry of Education – Mumias, Kenya
+ICT Support Personnel, June 2024 – June 2025**
+**Responsibilities**
 ✓ Supported E -Learning and content development in line with the schemes of work 
 ✓ Provided classroom support and training of Schoolteachers in use of digital literacy devices 
 ✓ Supported implementation of the Digital Literacy Program in various schools within Mumias SubCounty. 

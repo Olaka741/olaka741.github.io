@@ -1,12 +1,11 @@
-Shadrack Nandwa
-P.O BOX 00100, Nairobi, • 
-+254728764291 • 
-Nandwashady94@gmail.com • 
+**Shadrack Nandwa**
+P.O BOX 00100, Nairobi, 
++254728764291 
+Nandwashady94@gmail.com 
 linkedin.com/in/Nandwa Shadrack
 
-ICT Support Specialist
 
-OBJECTIVE
+OBJECTIVES
 An Information Technology specialist with robust understanding of IT principles and processes. I am proficient in 
 website development and have accumulated 2+ years of practical experience working as ICT support personnel.
 
@@ -24,10 +23,10 @@ ICT Support Personnel, June 2024 – June 2025**
 ✓ Supported school staff with development and production of key school policies and procedures
 ✓ Provided first line support and maintenance of ICT services in the schools 
 ✓ Any other duty that may be assigned by the County and Sub -County Director of Education
-✓
-Keda Ceramics-Kisumu Branch
-Position: ICT support personnel
-January 2024-May 2024
+
+****Keda Ceramics-Kisumu Branc**
+**Position: ICT support personnel****
+**January 2024-May 2024**
 ✓ Provided first -line technical support to end-users, resolving hardware, software, and network issues
 ✓ Managed and maintain company's IT infrastructure, including workstations, and network devices
 ✓ Implemented and maintained cybersecurity measures 

@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #0f172a;
+            --accent: #06b6d4;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --border: #e2e8f0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary);
+            background: var(--light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--secondary);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--secondary) 0%, #1e3a5f 100%);
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem 4rem;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .profile-photo {
+            width: clamp(120px, 28vw, 220px);
+            aspect-ratio: 1 / 1;
+            display: block;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            border: 4px solid var(--accent);
+            object-fit: cover;
+            background: #ddd;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            font-size: 1.4rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .professional-statement {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 2rem;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--secondary);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Resume Section */
+        #resume {
+            background: white;
+        }
+
+        .resume-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .resume-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .resume-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resume-card ul {
+            list-style: none;
+        }
+
+        .resume-card li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .resume-card li:last-child {
+            border-bottom: none;
+        }
+
+        .resume-item {
+            margin-bottom: 1rem;
+        }
+
+        .resume-item h4 {
+            color: var(--secondary);
+            font-size: 1rem;
+        }
+
+        .resume-item .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .resume-item p {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: var(--primary);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--light);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .project-image {
+            height: 180px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content p {
+            color: var(--gray);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .project-tech span {
+            background: var(--light);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            border: 1px solid var(--border);
+        }
+
+        .project-links {
+            display: flex;
+            gap: 0.6rem;
+            margin-top: 1rem;
+            justify-content: center;
+        }
+
+        .project-links a {
+            text-decoration: none;
+            padding: 0.45rem 0.9rem;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+        }
+
+        .project-links a.btn-demo {
+            background: var(--primary);
+            color: white;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .project-links a.btn-source {
+            background: transparent;
+            color: var(--primary);
+            border: 1px solid rgba(37, 99, 235, 0.14);
+        }
+
+        /* Lab Challenges Section */
+        #labs {
+            background: white;
+        }
+
+        .lab-card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border);
+        }
+
+        .lab-card h3 {
+            color: var(--primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .lab-section {
+            margin-bottom: 1rem;
+        }
+
+        .lab-section h4 {
+            color: var(--secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .lab-section p,
+        .lab-section ul {
+            color: var(--gray);
+            font-size: 0.95rem;
+        }
+
+        .lab-section ul {
+            margin-left: 1.5rem;
+        }
+
+        .tools-used {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .tool-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.25rem 0.7rem;
+            border-radius: 4px;
+            font-size: 0.8rem;
+        }
+
+        .screenshot-placeholder {
+            background: #ddd;
+            height: 150px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            margin-top: 0.5rem;
+        }
+
+        .key-lesson {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 3px solid var(--primary);
+            padding: 1rem;
+            border-radius: 0 8px 8px 0;
+            margin-top: 1rem;
+        }
+
+        .key-lesson p {
+            color: var(--secondary);
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--secondary);
+            color: white;
+            text-align: center;
+        }
+
+        #contact h2 {
+            color: white;
+        }
+
+        #contact h2::after {
+            background: var(--accent);
+        }
+
+        .contact-intro {
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .contact-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .contact-link svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background: #0a0f1a;
+            color: var(--gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .tagline {
+                font-size: 1.1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#resume">Resume</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#labs">Lab Challenges</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <img src="images/passport.jpeg" alt="Profile Photo" class="profile-photo">
+            <h1>Shadrack O.Nandwa</h1>
+            <p class="tagline">Cloud & Network Security Enthusiast | Software Developer |IT Support| Lifelong Learner
+            </p>
+            <p class="professional-statement">
+                Passionate about building secure, innovative solutions and continuously expanding my expertise
+                in cyber space security, software development, and emerging technologies. Committed to making
+                a meaningful impact through technology.
+            </p>
+        </div>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume">
+        <div class="container">
+            <h2>Resume</h2>
+            <div class="resume-grid">
+                <!-- Academic Background -->
+                <div class="resume-card">
+                    <h3>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 3L1 9l4 2.18v6L12 21l7-3.82v-6l2-1.09V17h2V9L12 3zm6.82 6L12 12.72 5.18 9 12 5.28 18.82 9zM17 15.99l-5 2.73-5-2.73v-3.72L12 15l5-2.73v3.72z" />
+                        </svg>
+                        Academic Background
+                    </h3>
+                    <div class="resume-item">
+                        <h4>Bachelor of Business Information Technology</h4>
+                        <span class="date">2017 - 2021</span>
+                        <p>Meru University of Science & Technology, Meru</p>
+                    </div>
+                    <div class="resume-item">
+                        <h4>High School Diploma</h4>
+                        <span class="date">2011 - 2014</span>
+                        <p>St. Stephens Shiatsala Sec School, Kakamega-Butere</p>
+                    </div>
+                </div>
+
+                <!-- Work Experience -->
+                <div class="resume-card">
+                    <h3>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z" />
+                        </svg>
+                        Work Experience
+                    </h3>
+                    <div class="resume-item">
+                        <h4>IT Support Specialist</h4>
+                        <span class="date">June 2025- June 2025</span>
+                        <p>Ministry Of Education- Provided classroom support and training of Schoolteachers in use of
+                            digital literacy devices.<br></p>
+                        <p>Supported implementation of the Digital Literacy Program in various schools within Mumias
+                            SubCounty.<br></p>
+                        <p>Carried out innovations to enable schools improve on use of digital learning and
+                            practices.<br></p>
+                        <p>Provided support in safe, secure, and ethical use of technology in learning.<br></p>
+                        <p>Assisted teachers by integrating ICT in delivery of teaching, learning, assessment and
+                            reporting<br></p>
+                        <p>Supported school staff with development and production of key school policies and
+                            procedures<br></p>
+                        <p>Provided first line support and maintenance of ICT services in the schools<br>
+                        <p>Any other duty that may be assigned by the County and Sub -County Director of Education.<br>
+                        </p>
+
+
+                    </div>
+                    <div class="resume-item">
+                        <h4>IT Support Technician</h4>
+                        <span class="date">2022 - 2023</span>
+                        <p>University IT Dept - Provided technical support to students and faculty.</p>
+                    </div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="resume-card">
+                    <h3>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm-2 16l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z" />
+                        </svg>
+                        Certifications
+                    </h3>
+                    <ul>
+                        <li>Data Analysis Using PowerBI, AI & EXCEL</li>
+                        <li>AWS Cloud Practitioner</li>
+                        <li>Cloud & Network Security </li>
+                        <li>Google IT Support Certificate</li>
+                    </ul>
+                </div>
+
+                <!-- Skills -->
+                <div class="resume-card">
+                    <h3>
+                        <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" />
+                        </svg>
+                        Skills
+                    </h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">JavaScript</span>
+                        <span class="skill-tag">Linux</span>
+                        <span class="skill-tag">Network Security</span>
+                        <span class="skill-tag">Penetration Testing</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Git</span>
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">Burp Suite</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+            <div class="projects-grid">
+                <!-- Project 1 -->
+                <div class="project-card">
+                    <div class="project-image">
+                        <svg width="60" height="60" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z" />
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <h3>Network Intrusion Detection System</h3>
+                        <p>Developed a machine learning-based IDS that analyzes network traffic patterns to detect
+                            potential security threats in real-time.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>Scikit-learn</span>
+                            <span>Wireshark</span>
+                            <span>Flask</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-demo" target="_blank" rel="noopener">Live</a>
+                            <a href="https://github.com/yourusername/nids" class="btn-source" target="_blank"
+                                rel="noopener">Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #059669 0%, #10b981 100%);">
+                        <svg width="60" height="60" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M18 8h-1V6c0-2.76-2.24-5-5-5S7 3.24 7 6v2H6c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V10c0-1.1-.9-2-2-2zm-6 9c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2zm3.1-9H8.9V6c0-1.71 1.39-3.1 3.1-3.1 1.71 0 3.1 1.39 3.1 3.1v2z" />
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <h3>Password Manager Application</h3>
+                        <p>Built a secure password manager with AES-256 encryption, master password authentication, and
+                            auto-fill browser extension.</p>
+                        <div class="project-tech">
+                            <span>JavaScript</span>
+                            <span>Node.js</span>
+                            <span>SQLite</span>
+                            <span>Crypto</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-demo" target="_blank" rel="noopener">Live</a>
+                            <a href="https://github.com/yourusername/password-manager" class="btn-source"
+                                target="_blank" rel="noopener">Source</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card">
+                    <div class="project-image" style="background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);">
+                        <svg width="60" height="60" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z" />
+                        </svg>
+                    </div>
+                    <div class="project-content">
+                        <h3>Cloud-Based File Sharing Platform</h3>
+                        <p>Created a secure file sharing platform with end-to-end encryption, user authentication, and
+                            role-based access control.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>AWS S3</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn-demo" target="_blank" rel="noopener">Live</a>
+                            <a href="https://github.com/yourusername/cloud-file-share" class="btn-source"
+                                target="_blank" rel="noopener">Source</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lab Challenges Section -->
+    <section id="labs">
+        <div class="container">
+            <h2>Lab Challenges</h2>
+
+            <!-- Lab Challenge 1 -->
+            <div class="lab-card">
+                <h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M20 8h-2.81c-.45-.78-1.07-1.45-1.82-1.96L17 4.41 15.59 3l-2.17 2.17C12.96 5.06 12.49 5 12 5c-.49 0-.96.06-1.41.17L8.41 3 7 4.41l1.62 1.63C7.88 6.55 7.26 7.22 6.81 8H4v2h2.09c-.05.33-.09.66-.09 1v1H4v2h2v1c0 .34.04.67.09 1H4v2h2.81c1.04 1.79 2.97 3 5.19 3s4.15-1.21 5.19-3H20v-2h-2.09c.05-.33.09-.66.09-1v-1h2v-2h-2v-1c0-.34-.04-.67-.09-1H20V8zm-6 8h-4v-2h4v2zm0-4h-4v-2h4v2z" />
+                    </svg>
+                    SQL Injection Challenge - HackTheBox
+                </h3>
+                <div class="lab-section">
+                    <h4>Problem Statement</h4>
+                    <p>A vulnerable web application with a login form susceptible to SQL injection attacks. The goal was
+                        to bypass authentication and retrieve sensitive data from the database.</p>
+                </div>
+                <div class="lab-section">
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Analyzed the login form for input validation weaknesses</li>
+                        <li>Tested various SQL injection payloads</li>
+                        <li>Used UNION-based injection to extract database schema</li>
+                        <li>Retrieved user credentials from the database</li>
+                    </ul>
+                </div>
+                <div class="lab-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-used">
+                        <span class="tool-badge">Burp Suite</span>
+                        <span class="tool-badge">SQLMap</span>
+                        <span class="tool-badge">Firefox DevTools</span>
+                    </div>
+                </div>
+                <div class="lab-section">
+                    <h4>Screenshot</h4>
+                    <div class="screenshot-placeholder">[Add screenshot here]</div>
+                </div>
+                <div class="key-lesson">
+                    <h4>Key Lessons Learned</h4>
+                    <p>Learned the importance of parameterized queries and input validation. Understood how attackers
+                        can leverage SQL injection to completely compromise a database.</p>
+                </div>
+            </div>
+
+            <!-- Lab Challenge 2 -->
+            <div class="lab-card">
+                <h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+                    </svg>
+                    Linux Privilege Escalation - TryHackMe
+                </h3>
+                <div class="lab-section">
+                    <h4>Problem Statement</h4>
+                    <p>Starting with limited user access on a Linux machine, escalate privileges to root by exploiting
+                        misconfigurations and vulnerabilities.</p>
+                </div>
+                <div class="lab-section">
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Enumerated system for SUID binaries and cron jobs</li>
+                        <li>Discovered a writable script executed by root via cron</li>
+                        <li>Modified the script to spawn a reverse shell</li>
+                        <li>Successfully obtained root access</li>
+                    </ul>
+                </div>
+                <div class="lab-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-used">
+                        <span class="tool-badge">LinPEAS</span>
+                        <span class="tool-badge">Netcat</span>
+                        <span class="tool-badge">GTFOBins</span>
+                    </div>
+                </div>
+                <div class="lab-section">
+                    <h4>Screenshot</h4>
+                    <div class="screenshot-placeholder">[Add screenshot here]</div>
+                </div>
+                <div class="key-lesson">
+                    <h4>Key Lessons Learned</h4>
+                    <p>Understanding the principle of least privilege and the dangers of misconfigured permissions.
+                        Regular auditing of cron jobs and SUID binaries is essential for security.</p>
+                </div>
+            </div>
+
+            <!-- Lab Challenge 3 -->
+            <div class="lab-card">
+                <h3>
+                    <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z" />
+                    </svg>
+                    Cross-Site Scripting (XSS) - PortSwigger Academy
+                </h3>
+                <div class="lab-section">
+                    <h4>Problem Statement</h4>
+                    <p>Identify and exploit stored XSS vulnerabilities in a blog comment system to steal session cookies
+                        from other users.</p>
+                </div>
+                <div class="lab-section">
+                    <h4>Approach</h4>
+                    <ul>
+                        <li>Tested comment fields for XSS vulnerabilities</li>
+                        <li>Bypassed basic input filters using encoded payloads</li>
+                        <li>Crafted a payload to exfiltrate cookies to an external server</li>
+                        <li>Demonstrated session hijacking potential</li>
+                    </ul>
+                </div>
+                <div class="lab-section">
+                    <h4>Tools Used</h4>
+                    <div class="tools-used">
+                        <span class="tool-badge">Burp Suite</span>
+                        <span class="tool-badge">Browser DevTools</span>
+                        <span class="tool-badge">RequestBin</span>
+                    </div>
+                </div>
+                <div class="lab-section">
+                    <h4>Screenshot</h4>
+                    <div class="screenshot-placeholder">[Add screenshot here]</div>
+                </div>
+                <div class="key-lesson">
+                    <h4>Key Lessons Learned</h4>
+                    <p>Learned about proper output encoding and Content Security Policy (CSP) implementation. Understood
+                        the real-world impact of XSS on user security.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Get In Touch</h2>
+            <p class="contact-intro">I'm always open to discussing new opportunities, collaborations, or just having a
+                conversation about technology and security.</p>
+
+            <div class="contact-links">
+                <a href="/cdn-cgi/l/email-protection#c8b1a7bdbae6ada5a9a1a488adb0a9a5b8a4ade6aba7a5"
+                    class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
+                    </svg>
+                    <span class="__cf_email__" data-cfemail="nandwashady94@gmail.com">[nandwashady94@gmail.com]</span>
+                </a>
+                <a href="https://linkedin.com/in/shadrack nandwa" target="_blank" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.79M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+                    </svg>
+                    LinkedIn
+                </a>
+                <a href="https://github.com/olaka741" target="_blank" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    GitHub
+                </a>
+                <a href="tel:+1234567890" class="contact-link">
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z" />
+                    </svg>
+                    +254728764291
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Shadrack Nandwa. All rights reserved.</p>
+    </footer>
+
+    <!-- Smooth Scrolling -->
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+    <script>
+        /**
+         * Iframe 元素高亮注入脚本
+         * 需要在目标网站中引入此脚本来支持跨域 iframe 高亮功能
+         *
+         * 使用方法：
+         * 1. 将此脚本添加到目标网站的 HTML 中
+         * 2. 或通过浏览器扩展、用户脚本等方式注入
+         */
+
+        (function () {
+            "use strict";
+
+            // 检查是否在 iframe 中
+            if (window.self === window.top) {
+                return; // 不在 iframe 中，不执行
+            }
+
+            // 检查是否已经初始化过
+            if (window.__iframeHighlightInitialized) {
+                return;
+            }
+            window.__iframeHighlightInitialized = true;
+            console.log("Iframe 高亮脚本已加载");
+
+            // 创建高亮覆盖层
+            var overlay = document.createElement("div");
+            overlay.id = "iframe-highlight-overlay";
+            overlay.style.cssText = "\n    position: fixed;\n    top: 0;\n    left: 0;\n    width: 100vw;\n    height: 100vh;\n    pointer-events: none;\n    z-index: 999999;\n    overflow: hidden;\n  ";
+
+            // 创建悬停高亮框（虚线边框）
+            var highlightBox = document.createElement("div");
+            highlightBox.id = "iframe-highlight-box";
+            highlightBox.style.cssText = "\n    position: absolute;\n    border: 2px dashed #007AFF;\n    background: rgba(0, 122, 255, 0.08);\n    pointer-events: none;\n    display: none;\n    transition: all 0.1s ease;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.8);\n    border-radius: 2px;\n  ";
+
+            // 创建选中节点的常驻高亮框（实线边框）
+            var selectedBox = document.createElement("div");
+            selectedBox.id = "iframe-selected-box";
+            selectedBox.style.cssText = "\n    position: absolute;\n    border: 2px solid #007AFF;\n    pointer-events: none;\n    display: none;\n    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.9), 0 0 8px rgba(255, 107, 53, 0.4);\n    border-radius: 2px;\n    z-index: 1000000;\n  ";
+
+            // 创建悬停标签显示
+            var tagLabel = document.createElement("div");
+            tagLabel.id = "iframe-tag-label";
+            tagLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 2px 6px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 2px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000001;\n    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n    font-weight: 500;\n  ";
+
+            // 创建选中节点标签
+            var selectedLabel = document.createElement("div");
+            selectedLabel.id = "iframe-selected-label";
+            selectedLabel.style.cssText = "\n    position: absolute;\n    background: #007AFF;\n    color: white;\n    padding: 3px 8px;\n    font-size: 11px;\n    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;\n    border-radius: 3px;\n    pointer-events: none;\n    display: none;\n    white-space: nowrap;\n    z-index: 1000002;\n    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);\n    font-weight: 600;\n  ";
+            overlay.appendChild(highlightBox);
+            overlay.appendChild(selectedBox);
+            overlay.appendChild(tagLabel);
+            overlay.appendChild(selectedLabel);
+            document.body.appendChild(overlay);
+
+            // 存储当前选中的元素
+            var selectedElement = null;
+            var highlightEnabled = false;
+
+            // 更新选中元素的高亮显示
+            function updateSelectedHighlight(element) {
+                console.log("updateSelectedHighlight called with:", element);
+                if (!element) {
+                    selectedBox.style.display = "none";
+                    selectedLabel.style.display = "none";
+                    selectedElement = null;
+                    console.log("Cleared selected highlight");
+                    return;
+                }
+                selectedElement = element;
+                var rect = element.getBoundingClientRect();
+                console.log("Selected element rect:", rect);
+
+                // 更新选中高亮框位置
+                selectedBox.style.display = "block";
+                selectedBox.style.left = "".concat(rect.left - 2, "px");
+                selectedBox.style.top = "".concat(rect.top - 2, "px");
+                selectedBox.style.width = "".concat(rect.width + 4, "px");
+                selectedBox.style.height = "".concat(rect.height + 4, "px");
+
+                // 更新选中标签位置和内容
+                selectedLabel.style.display = "block";
+                selectedLabel.textContent = "\u2713 <".concat(element.tagName.toLowerCase(), ">");
+
+                // 计算标签位置，确保不超出视窗
+                var labelTop = rect.top - 28;
+                var labelLeft = rect.left;
+
+                // 如果标签会超出顶部，显示在元素下方
+                if (labelTop < 5) {
+                    labelTop = rect.bottom + 5;
+                }
+
+                // 如果标签会超出右侧，向左调整
+                var labelWidth = selectedLabel.offsetWidth || 100; // 预估宽度
+                if (labelLeft + labelWidth > window.innerWidth - 10) {
+                    labelLeft = window.innerWidth - labelWidth - 10;
+                }
+                selectedLabel.style.left = "".concat(Math.max(5, labelLeft), "px");
+                selectedLabel.style.top = "".concat(labelTop, "px");
+                console.log("Selected highlight positioned at:", {
+                    left: selectedBox.style.left,
+                    top: selectedBox.style.top,
+                    width: selectedBox.style.width,
+                    height: selectedBox.style.height
+                });
+            }
+            function getElementSelector(element) {
+                if (!(element instanceof Element)) throw new Error('Argument must be a DOM element');
+                var segments = [];
+                var current = element;
+                while (current !== document.documentElement) {
+                    var selector = '';
+                    // 优先检查唯一ID
+                    if (current.id && document.querySelectorAll("#".concat(current.id)).length === 1) {
+                        segments.unshift("#".concat(current.id));
+                        break; // ID唯一，无需继续向上
+                    }
+
+                    // 生成类名选择器（取第一个有效类名）
+                    var classes = Array.from(current.classList).filter(function (c) {
+                        return !c.startsWith('js-');
+                    });
+                    var className = classes.length > 0 ? ".".concat(classes[0]) : '';
+
+                    // 生成位置索引（nth-child）
+                    var tag = current.tagName.toLowerCase();
+                    if (!className) {
+                        var siblings = Array.from(current.parentNode.children);
+                        var index = siblings.findIndex(function (el) {
+                            return el === current;
+                        }) + 1;
+                        selector = "".concat(tag, ":nth-child(").concat(index, ")");
+                    } else {
+                        selector = className;
+                    }
+                    segments.unshift(selector);
+                    current = current.parentElement;
+                }
+
+                // 处理根元素
+                if (current === document.documentElement) {
+                    segments.unshift('html');
+                }
+                return segments.join(' > ');
+            }
+
+            // 获取元素文本内容
+            function getElementText(element) {
+                var _element$textContent;
+                if (element.tagName === "INPUT") {
+                    return element.value || element.placeholder || "";
+                }
+                if (element.tagName === "TEXTAREA") {
+                    return element.value || element.placeholder || "";
+                }
+                var text = ((_element$textContent = element.textContent) === null || _element$textContent === void 0 ? void 0 : _element$textContent.trim()) || "";
+                return text.length > 50 ? text.substring(0, 50) + "..." : text;
+            }
+
+            // 获取元素属性信息
+            function getElementAttributes(element) {
+                var attrs = {};
+                for (var i = 0; i < element.attributes.length; i++) {
+                    var attr = element.attributes[i];
+                    attrs[attr.name] = attr.value;
+                }
+                return attrs;
+            }
+
+            // 鼠标悬停事件处理
+            function handleMouseOver(e) {
+                if (!highlightEnabled) return;
+                var target = e.target;
+                if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+                    return;
+                }
+
+                // 避免高亮 html 和 body 元素
+                if (target === document.documentElement || target === document.body) {
+                    return;
+                }
+
+                // 如果是已选中的元素，不显示悬停高亮
+                if (target === selectedElement) {
+                    highlightBox.style.display = "none";
+                    tagLabel.style.display = "none";
+                    return;
+                }
+                var rect = target.getBoundingClientRect();
+                var selector = getElementSelector(target);
+                var text = getElementText(target);
+                var attributes = getElementAttributes(target);
+
+                // 更新悬停高亮框位置
+                highlightBox.style.display = "block";
+                highlightBox.style.left = "".concat(rect.left - 2, "px");
+                highlightBox.style.top = "".concat(rect.top - 2, "px");
+                highlightBox.style.width = "".concat(rect.width + 4, "px");
+                highlightBox.style.height = "".concat(rect.height + 4, "px");
+
+                // 更新标签位置和内容
+                tagLabel.style.display = "block";
+                tagLabel.textContent = "<".concat(target.tagName.toLowerCase(), ">");
+
+                // 计算标签位置，确保不超出视窗
+                var labelTop = rect.top - 22;
+                var labelLeft = rect.left;
+
+                // 如果标签会超出顶部，显示在元素下方
+                if (labelTop < 0) {
+                    labelTop = rect.bottom + 5;
+                }
+
+                // 如果标签会超出右侧，向左调整
+                if (labelLeft + tagLabel.offsetWidth > window.innerWidth) {
+                    labelLeft = window.innerWidth - tagLabel.offsetWidth - 5;
+                }
+                tagLabel.style.left = "".concat(Math.max(0, labelLeft), "px");
+                tagLabel.style.top = "".concat(labelTop, "px");
+
+                // 发送消息到父窗口
+                var elementInfo = {
+                    tagName: target.tagName.toLowerCase(),
+                    rect: {
+                        left: rect.left,
+                        top: rect.top,
+                        right: rect.right,
+                        bottom: rect.bottom,
+                        width: rect.width,
+                        height: rect.height,
+                        x: rect.x,
+                        y: rect.y
+                    },
+                    selector: selector,
+                    text: text,
+                    attributes: attributes,
+                    url: window.location.href,
+                    path: window.location.pathname,
+                    timestamp: Date.now()
+                };
+                try {
+                    window.parent.postMessage({
+                        type: "iframe-element-hover",
+                        data: elementInfo,
+                        source: "iframe-highlight-injector"
+                    }, "*");
+                } catch (error) {
+                    console.warn("无法发送消息到父窗口:", error);
+                }
+            }
+
+            // 鼠标离开事件处理
+            function handleMouseOut(e) {
+                if (!highlightEnabled) return;
+                var relatedTarget = e.relatedTarget;
+
+                // 如果鼠标移动到高亮相关元素上，不隐藏高亮
+                if (relatedTarget && (relatedTarget === highlightBox || relatedTarget === tagLabel || relatedTarget === overlay || relatedTarget === selectedBox || relatedTarget === selectedLabel)) {
+                    return;
+                }
+                highlightBox.style.display = "none";
+                tagLabel.style.display = "none";
+                try {
+                    window.parent.postMessage({
+                        type: "iframe-element-hover",
+                        data: null,
+                        source: "iframe-highlight-injector"
+                    }, "*");
+                } catch (error) {
+                    console.warn("无法发送消息到父窗口:", error);
+                }
+            }
+
+            // 点击事件处理
+            function handleClick(e) {
+                var target = e.target;
+                if (!target || target === overlay || target === highlightBox || target === tagLabel || target === selectedBox || target === selectedLabel) {
+                    return;
+                }
+
+                // 避免处理 html 和 body 元素
+                if (target === document.documentElement || target === document.body) {
+                    return;
+                }
+
+                // 检查是否是交互元素，这些元素需要保留默认行为
+                var isInteractiveElement = ['input', 'textarea', 'select', 'button', 'a'].includes(target.tagName.toLowerCase());
+
+                // 如果高亮功能启用，对于非交互元素阻止默认行为和事件传播
+                if (highlightEnabled) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                var rect = target.getBoundingClientRect();
+                var selector = getElementSelector(target);
+                var text = getElementText(target);
+                var attributes = getElementAttributes(target);
+                console.log("Element clicked:", {
+                    tagName: target.tagName,
+                    selector: selector,
+                    rect: rect
+                });
+
+                // 立即更新选中高亮
+                updateSelectedHighlight(target);
+
+                // 隐藏悬停高亮，因为现在是选中状态
+                highlightBox.style.display = "none";
+                tagLabel.style.display = "none";
+                var elementInfo = {
+                    tagName: target.tagName.toLowerCase(),
+                    rect: {
+                        left: rect.left,
+                        top: rect.top,
+                        right: rect.right,
+                        bottom: rect.bottom,
+                        width: rect.width,
+                        height: rect.height,
+                        x: rect.x,
+                        y: rect.y
+                    },
+                    selector: selector,
+                    text: text,
+                    attributes: attributes,
+                    url: window.location.href,
+                    path: window.location.pathname,
+                    timestamp: Date.now()
+                };
+                try {
+                    window.parent.postMessage({
+                        type: "iframe-element-click",
+                        data: elementInfo,
+                        source: "iframe-highlight-injector"
+                    }, "*");
+                } catch (error) {
+                    console.warn("无法发送消息到父窗口:", error);
+                }
+            }
+
+            // 监听来自父窗口的消息
+            function handleParentMessage(event) {
+                console.log("Received message from parent:", event.data);
+                if (event.data.type === "iframe-highlight-toggle") {
+                    var enabled = event.data.enabled;
+                    console.log("Highlight toggle:", enabled);
+                    if (enabled) {
+                        enableHighlight();
+                    } else {
+                        disableHighlight();
+                    }
+                } else if (event.data.type === "enable-iframe-highlight") {
+                    console.log("Enable iframe highlight");
+                    enableHighlight();
+                } else if (event.data.type === "disable-iframe-highlight") {
+                    console.log("Disable iframe highlight");
+                    disableHighlight();
+                } else if (event.data.type === "toggle-iframe-highlight") {
+                    var _enabled = event.data.enabled !== undefined ? event.data.enabled : !highlightEnabled;
+                    console.log("Toggle iframe highlight to:", _enabled);
+                    if (_enabled) {
+                        enableHighlight();
+                    } else {
+                        disableHighlight();
+                    }
+                } else if (event.data.type === "update-selected-element") {
+                    var selector = event.data.selector;
+                    console.log("Update selected element with selector:", selector);
+                    if (selector) {
+                        try {
+                            var element = document.querySelector(selector);
+                            console.log("Found element by selector:", element);
+                            updateSelectedHighlight(element);
+                        } catch (error) {
+                            console.warn("Failed to select element:", error);
+                            updateSelectedHighlight(null);
+                        }
+                    } else {
+                        updateSelectedHighlight(null);
+                    }
+                } else if (event.data.type === "clear-selected-element") {
+                    console.log("Clear selected element");
+                    updateSelectedHighlight(null);
+                }
+            }
+
+            // 启用高亮功能
+            function enableHighlight() {
+                console.log("Enabling highlight");
+                document.addEventListener("mouseover", handleMouseOver, true);
+                document.addEventListener("mouseout", handleMouseOut, true);
+                document.addEventListener("click", handleClick, true);
+                highlightEnabled = true;
+                overlay.style.display = "block";
+            }
+
+            // 禁用高亮功能
+            function disableHighlight() {
+                console.log("Disabling highlight");
+                highlightEnabled = false;
+                // 保持事件监听器，但通过 highlightEnabled 变量控制行为
+                // 这样可以保留选中状态的显示
+                highlightBox.style.display = "none";
+                tagLabel.style.display = "none";
+                // 不隐藏 selectedBox 和 selectedLabel，保留选中状态
+            }
+
+            // 完全禁用高亮功能（移除所有监听器）
+            function fullyDisableHighlight() {
+                console.log("Fully disabling highlight");
+                highlightEnabled = false;
+                document.removeEventListener("mouseover", handleMouseOver, true);
+                document.removeEventListener("mouseout", handleMouseOut, true);
+                document.removeEventListener("click", handleClick, true);
+                overlay.style.display = "none";
+                highlightBox.style.display = "none";
+                tagLabel.style.display = "none";
+                selectedBox.style.display = "none";
+                selectedLabel.style.display = "none";
+            }
+
+            // 添加事件监听
+            enableHighlight();
+            window.addEventListener("message", handleParentMessage);
+
+            // 暴露全局函数供外部调用
+            window.__iframeHighlightControl = {
+                enable: enableHighlight,
+                disable: disableHighlight,
+                fullyDisable: fullyDisableHighlight,
+                isEnabled: function isEnabled() {
+                    return highlightEnabled;
+                },
+                getSelectedElement: function getSelectedElement() {
+                    return selectedElement;
+                },
+                updateSelected: updateSelectedHighlight,
+                // 通过消息发送开关控制
+                sendToggleMessage: function sendToggleMessage(enabled) {
+                    window.parent.postMessage({
+                        type: 'iframe-highlight-status',
+                        enabled: enabled || highlightEnabled,
+                        source: 'iframe-highlight-injector'
+                    }, '*');
+                }
+            };
+
+            // 通知父窗口脚本已加载
+            try {
+                window.parent.postMessage({
+                    type: "iframe-highlight-ready",
+                    data: {
+                        url: window.location.href,
+                        userAgent: navigator.userAgent,
+                        timestamp: Date.now()
+                    },
+                    source: "iframe-highlight-injector"
+                }, "*");
+            } catch (error) {
+                console.warn("无法发送就绪消息到父窗口:", error);
+            }
+
+            
+            window.__iframeHighlightCleanup = function () {
+                fullyDisableHighlight();
+                window.removeEventListener("message", handleParentMessage);
+                if (overlay.parentElement) {
+                    overlay.parentElement.removeChild(overlay);
+                }
+                delete window.__iframeHighlightInitialized;
+                delete window.__iframeHighlightCleanup;
+            };
+        })();
+
+    </script>
+</body>
+
+</html>
